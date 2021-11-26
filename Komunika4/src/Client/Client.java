@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
@@ -43,7 +44,8 @@ public class Client extends javax.swing.JFrame implements Runnable {
     private EventListener listener;
     CardLayout mainLayout, secondaryLayout;
     TargetDataLine line;
-
+    ArrayList<String> users;
+    
     public Client() {
         initComponents();
         mainLayout = (CardLayout) parent.getLayout();
@@ -352,6 +354,19 @@ public class Client extends javax.swing.JFrame implements Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+
+    private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
+        username = usernameTField.getText();
+        if (username.isEmpty()) {
+            //JOptionPane.showMessageDialog(this, "Your username can not be empty");
+            System.out.println("Your username can not be empty");
+        } else {
+            connect();
+            mainLayout.show(parent, "card3");
+            usernameTField.setText("");
+        }
+    }//GEN-LAST:event_joinBtnActionPerformed
 
     private void chatTFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chatTFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
