@@ -40,6 +40,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
     private boolean running = false;
     private boolean audio = false;
     private boolean video = false;
+    private EventListener listener;
     CardLayout mainLayout, secondaryLayout;
     TargetDataLine line;
 
@@ -59,12 +60,17 @@ public class Client extends javax.swing.JFrame implements Runnable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         parent = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        Join = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         usernameTField = new javax.swing.JTextField();
-        joinBtn = new javax.swing.JButton();
         room = new javax.swing.JPanel();
         parent2 = new javax.swing.JPanel();
         chat = new javax.swing.JPanel();
@@ -73,76 +79,108 @@ public class Client extends javax.swing.JFrame implements Runnable {
         chatTArea = new javax.swing.JTextArea();
         participants = new javax.swing.JPanel();
         options = new javax.swing.JPanel();
-        audioBtn = new javax.swing.JButton();
-        videoBtn = new javax.swing.JButton();
-        leaveBtn = new javax.swing.JButton();
-        chatBtn = new javax.swing.JButton();
-        peopleBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        People = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        Chat = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        Leave = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         stream = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Komunika");
 
         parent.setLayout(new java.awt.CardLayout());
 
+        jPanel1.setBackground(new java.awt.Color(56, 182, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Komunika");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/SNJclips Logotipos (100 x 70 px) (100 x 60 px) (80 x 60 px) (260 x 180 px).png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 270, 162));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 300, 10));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Enter your username please");
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        joinBtn.setText("Join");
-        joinBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                joinBtnActionPerformed(evt);
+        Join.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Join.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Join.setText("Join");
+        Join.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JoinMouseClicked(evt);
             }
         });
+        jPanel2.add(Join, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 40));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 300, 40));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Enter your username please");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 240, 38));
+
+        usernameTField.setBackground(new java.awt.Color(255, 230, 255));
+        usernameTField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        usernameTField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameTFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(usernameTField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 300, 40));
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(joinBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(usernameTField))
-                        .addGap(0, 258, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usernameTField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(joinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
         );
 
         parent.add(menu, "card2");
 
+        room.setBackground(new java.awt.Color(102, 153, 255));
+
         parent2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         parent2.setLayout(new java.awt.CardLayout());
 
+        chat.setBackground(new java.awt.Color(102, 153, 255));
+
+        chatTField.setBackground(new java.awt.Color(204, 204, 204));
         chatTField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 chatTFieldKeyPressed(evt);
             }
         });
 
+        chatTArea.setBackground(new java.awt.Color(204, 204, 204));
         chatTArea.setColumns(20);
         chatTArea.setRows(5);
         jScrollPane1.setViewportView(chatTArea);
@@ -157,7 +195,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
         chatLayout.setVerticalGroup(
             chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chatLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chatTField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -172,79 +210,106 @@ public class Client extends javax.swing.JFrame implements Runnable {
         );
         participantsLayout.setVerticalGroup(
             participantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
+            .addGap(0, 410, Short.MAX_VALUE)
         );
 
         parent2.add(participants, "card3");
 
+        options.setBackground(new java.awt.Color(37, 127, 186));
         options.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        options.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        audioBtn.setText("Audio: off");
-        audioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                audioBtnActionPerformed(evt);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/logo (40 x 40 px).png"))); // NOI18N
+        options.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        People.setBackground(new java.awt.Color(47, 161, 237));
+        People.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PeopleMouseClicked(evt);
             }
         });
 
-        videoBtn.setText("Video: off");
-        videoBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                videoBtnActionPerformed(evt);
-            }
-        });
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel9.setText("People");
 
-        leaveBtn.setText("Leave");
-        leaveBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leaveBtnActionPerformed(evt);
-            }
-        });
-
-        chatBtn.setText("Chat");
-        chatBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chatBtnActionPerformed(evt);
-            }
-        });
-
-        peopleBtn.setText("People");
-        peopleBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                peopleBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout optionsLayout = new javax.swing.GroupLayout(options);
-        options.setLayout(optionsLayout);
-        optionsLayout.setHorizontalGroup(
-            optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(optionsLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(audioBtn)
-                .addGap(18, 18, 18)
-                .addComponent(videoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(leaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(chatBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(peopleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+        javax.swing.GroupLayout PeopleLayout = new javax.swing.GroupLayout(People);
+        People.setLayout(PeopleLayout);
+        PeopleLayout.setHorizontalGroup(
+            PeopleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PeopleLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel9)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
-        optionsLayout.setVerticalGroup(
-            optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(optionsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(optionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(videoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                        .addComponent(leaveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                        .addComponent(chatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                        .addComponent(peopleBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
-                    .addComponent(audioBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        PeopleLayout.setVerticalGroup(
+            PeopleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PeopleLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        options.add(People, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 80, 40));
+
+        Chat.setBackground(new java.awt.Color(47, 161, 237));
+        Chat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChatMouseClicked(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel10.setText("Chat");
+
+        javax.swing.GroupLayout ChatLayout = new javax.swing.GroupLayout(Chat);
+        Chat.setLayout(ChatLayout);
+        ChatLayout.setHorizontalGroup(
+            ChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChatLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel10)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        ChatLayout.setVerticalGroup(
+            ChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ChatLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        options.add(Chat, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 80, 40));
+
+        Leave.setBackground(new java.awt.Color(47, 161, 237));
+        Leave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LeaveMouseClicked(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jLabel11.setText("Leave");
+
+        javax.swing.GroupLayout LeaveLayout = new javax.swing.GroupLayout(Leave);
+        Leave.setLayout(LeaveLayout);
+        LeaveLayout.setHorizontalGroup(
+            LeaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LeaveLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel11)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        LeaveLayout.setVerticalGroup(
+            LeaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LeaveLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        options.add(Leave, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 80, 40));
+
+        stream.setBackground(new java.awt.Color(204, 204, 204));
         stream.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout streamLayout = new javax.swing.GroupLayout(stream);
@@ -275,7 +340,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
             .addGroup(roomLayout.createSequentialGroup()
                 .addComponent(stream, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(options, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(options, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         parent.add(room, "card3");
@@ -294,18 +359,6 @@ public class Client extends javax.swing.JFrame implements Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void joinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinBtnActionPerformed
-        username = usernameTField.getText();
-        if (username.isEmpty()) {
-            //JOptionPane.showMessageDialog(this, "Your username can not be empty");
-            System.out.println("Your username can not be empty");
-        } else {
-            connect();
-            mainLayout.show(parent, "card3");
-        }
-    }//GEN-LAST:event_joinBtnActionPerformed
-
     private void chatTFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chatTFieldKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String s = chatTField.getText();
@@ -314,37 +367,32 @@ public class Client extends javax.swing.JFrame implements Runnable {
         }
     }//GEN-LAST:event_chatTFieldKeyPressed
 
-    private void audioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_audioBtnActionPerformed
-        if (audio) {
-            audio = false;
-            audioBtn.setText("Audio: Off");
+    private void JoinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JoinMouseClicked
+        username = usernameTField.getText();
+        if (username.isEmpty()) {
+            //JOptionPane.showMessageDialog(this, "Your username can not be empty");
+            System.out.println("Your username can not be empty");
         } else {
-            audio = true;
-            audioBtn.setText("Audio: On");
+            connect();
+            mainLayout.show(parent, "card3");
         }
-    }//GEN-LAST:event_audioBtnActionPerformed
+    }//GEN-LAST:event_JoinMouseClicked
 
-    private void videoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_videoBtnActionPerformed
-        if (video) {
-            video = false;
-            videoBtn.setText("Video: Off");
-        } else {
-            video = true;
-            videoBtn.setText("Video: On");
-        }
-    }//GEN-LAST:event_videoBtnActionPerformed
-
-    private void leaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveBtnActionPerformed
-        close();
-    }//GEN-LAST:event_leaveBtnActionPerformed
-
-    private void chatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chatBtnActionPerformed
+    private void ChatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChatMouseClicked
         secondaryLayout.show(parent2, "card2");
-    }//GEN-LAST:event_chatBtnActionPerformed
+    }//GEN-LAST:event_ChatMouseClicked
 
-    private void peopleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peopleBtnActionPerformed
+    private void LeaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LeaveMouseClicked
+        close();
+    }//GEN-LAST:event_LeaveMouseClicked
+
+    private void PeopleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PeopleMouseClicked
         secondaryLayout.show(parent2, "card3");
-    }//GEN-LAST:event_peopleBtnActionPerformed
+    }//GEN-LAST:event_PeopleMouseClicked
+
+    private void usernameTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameTFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,12 +449,66 @@ public class Client extends javax.swing.JFrame implements Runnable {
             out.flush();
             in = new ObjectInputStream(socket.getInputStream());
 
+            listener = new EventListener();
             running = true;
 
             new Thread(this).start();
             sendObject(new AddUserPacket(username));
 
-            
+            Thread audioThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    AudioFormat format = getAudioFormat();
+                    DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
+
+                    // checks if system supports the data line
+                    if (!AudioSystem.isLineSupported(info)) {
+                        System.out.println("Line not supported");
+                        System.exit(0);
+                    }
+                    try {
+                        line = (TargetDataLine) AudioSystem.getLine(info);
+                        line.open(format);
+                        line.start();   // start capturing
+                    } catch (LineUnavailableException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    System.out.println("Start capturing...");
+                    while (true) {
+                        System.out.println("");
+                        if (audio) {
+                            try {
+
+                                //AudioInputStream ais = new AudioInputStream(line);
+                                byte buf[] = new byte[1024];
+
+                                int bytesIn = line.read(buf, 0, 1024);
+
+                                AudioPacket ap = new AudioPacket(buf, 0, bytesIn);
+
+                                //AudioPacket ap = new AudioPacket(ais);
+                                out.writeObject(ap);
+
+                            } catch (IOException ex) {
+                                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+
+                    }
+                }
+            });
+            audioThread.start();
+            Thread videoThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (video) {
+
+                    }
+                }
+            });
+            videoThread.start();
 
         } catch (IOException ex) {
             System.out.println("Unnable to connect to the server");
@@ -416,16 +518,14 @@ public class Client extends javax.swing.JFrame implements Runnable {
     public void close() {
 
         try {
-            RemoveUserPacket packet = new RemoveUserPacket(username);
-            sendObject(packet);
             running = false;
             audio = false;
             video = false;
-            
+            RemoveUserPacket packet = new RemoveUserPacket(username);
+            sendObject(packet);
             in.close();
             out.close();
             socket.close();
-            mainLayout.show(parent, "card2");
         } catch (IOException ex) {
             System.out.println("Error in closing the connection");
         }
@@ -435,39 +535,18 @@ public class Client extends javax.swing.JFrame implements Runnable {
     public void sendObject(Object packet) {
         try {
             out.writeObject(packet);
-            //out.flush();
         } catch (IOException ex) {
-            System.out.println("Error while sending object "+ ex);
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    
-    void recieved(Object data) {
-        if (data instanceof AddUserPacket) {
-            AddUserPacket aup = (AddUserPacket) data;
-            System.out.println("The user " + aup.getUsername() + " has joined the room");
-        } else if (data instanceof RemoveUserPacket) {
-            RemoveUserPacket rup = (RemoveUserPacket) data;
-            System.out.println("The user " + rup.getUsername() + " has left the room");
-        } else if (data instanceof ChatPacket) {
-            ChatPacket cp = (ChatPacket) data;
-            Client.chatTArea.setText(Client.chatTArea.getText()
-                    + "\nfrom " + cp.getUsername() + ":\n"
-                    + cp.getMessage());
-        } else if (data instanceof AudioPacket) {
-            AudioPacket ap = (AudioPacket) data;
-            
-        }
-    }
-
-    
 
     @Override
     public void run() {
         while (running) {
             try {
                 Object data = in.readObject();
-                recieved(data);
+                listener.recieved(data);
             } catch (IOException ex) {
                 close();
             } catch (ClassNotFoundException ex) {
@@ -477,25 +556,32 @@ public class Client extends javax.swing.JFrame implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton audioBtn;
+    private javax.swing.JPanel Chat;
+    private javax.swing.JLabel Join;
+    private javax.swing.JPanel Leave;
+    private javax.swing.JPanel People;
     private javax.swing.JPanel chat;
-    private javax.swing.JButton chatBtn;
     public static javax.swing.JTextArea chatTArea;
     private javax.swing.JTextField chatTField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton joinBtn;
-    private javax.swing.JButton leaveBtn;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel options;
     private javax.swing.JPanel parent;
     private javax.swing.JPanel parent2;
     private javax.swing.JPanel participants;
-    private javax.swing.JButton peopleBtn;
     private javax.swing.JPanel room;
     private javax.swing.JPanel stream;
     private javax.swing.JTextField usernameTField;
-    private javax.swing.JButton videoBtn;
     // End of variables declaration//GEN-END:variables
 }
