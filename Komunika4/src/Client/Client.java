@@ -62,6 +62,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
 
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
         parent = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -75,8 +76,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
         parent2 = new javax.swing.JPanel();
         chat = new javax.swing.JPanel();
         chatTField = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        chatTArea = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
         participants = new javax.swing.JPanel();
         options = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -86,7 +86,8 @@ public class Client extends javax.swing.JFrame implements Runnable {
         jLabel10 = new javax.swing.JLabel();
         Leave = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        stream = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        chatTArea = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -171,7 +172,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
         parent2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         parent2.setLayout(new java.awt.CardLayout());
 
-        chat.setBackground(new java.awt.Color(102, 153, 255));
+        chat.setBackground(new java.awt.Color(51, 182, 255));
 
         chatTField.setBackground(new java.awt.Color(204, 204, 204));
         chatTField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -180,24 +181,25 @@ public class Client extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        chatTArea.setBackground(new java.awt.Color(204, 204, 204));
-        chatTArea.setColumns(20);
-        chatTArea.setRows(5);
-        jScrollPane1.setViewportView(chatTArea);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/SNJclips Logotipos (100 x 70 px) (100 x 60 px) (80 x 60 px) (260 x 180 px).png"))); // NOI18N
 
         javax.swing.GroupLayout chatLayout = new javax.swing.GroupLayout(chat);
         chat.setLayout(chatLayout);
         chatLayout.setHorizontalGroup(
             chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(chatTField)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+            .addGroup(chatLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         chatLayout.setVerticalGroup(
             chatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chatLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chatTField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(chatTField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
         );
 
         parent2.add(chat, "card2");
@@ -210,7 +212,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
         );
         participantsLayout.setVerticalGroup(
             participantsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGap(0, 415, Short.MAX_VALUE)
         );
 
         parent2.add(participants, "card3");
@@ -309,19 +311,10 @@ public class Client extends javax.swing.JFrame implements Runnable {
 
         options.add(Leave, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 80, 40));
 
-        stream.setBackground(new java.awt.Color(204, 204, 204));
-        stream.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout streamLayout = new javax.swing.GroupLayout(stream);
-        stream.setLayout(streamLayout);
-        streamLayout.setHorizontalGroup(
-            streamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        streamLayout.setVerticalGroup(
-            streamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        chatTArea.setBackground(new java.awt.Color(204, 204, 204));
+        chatTArea.setColumns(20);
+        chatTArea.setRows(5);
+        jScrollPane1.setViewportView(chatTArea);
 
         javax.swing.GroupLayout roomLayout = new javax.swing.GroupLayout(room);
         room.setLayout(roomLayout);
@@ -329,16 +322,17 @@ public class Client extends javax.swing.JFrame implements Runnable {
             roomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roomLayout.createSequentialGroup()
                 .addGroup(roomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(options, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(stream, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(options, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(parent2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         roomLayout.setVerticalGroup(
             roomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(parent2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(parent2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(roomLayout.createSequentialGroup()
-                .addComponent(stream, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(options, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -566,6 +560,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
@@ -575,13 +570,13 @@ public class Client extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel options;
     private javax.swing.JPanel parent;
     private javax.swing.JPanel parent2;
     private javax.swing.JPanel participants;
     private javax.swing.JPanel room;
-    private javax.swing.JPanel stream;
     private javax.swing.JTextField usernameTField;
     // End of variables declaration//GEN-END:variables
 }
