@@ -435,7 +435,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
                             try {
 
                                 //AudioInputStream ais = new AudioInputStream(line);
-                                byte buf[] = new byte[1024];
+                                byte buf[] = new byte[8192];
 
                                 int bytesIn = line.read(buf, 0, 1024);
 

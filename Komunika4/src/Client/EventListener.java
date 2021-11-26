@@ -17,6 +17,9 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.TargetDataLine;
+import sun.audio.AudioData;
+import sun.audio.AudioDataStream;
+import sun.audio.AudioPlayer;
 
 /**
  *
@@ -25,28 +28,23 @@ import javax.sound.sampled.TargetDataLine;
 public class EventListener {
 
     void recieved(Object data) {
-        if(data instanceof AddUserPacket){
+        if (data instanceof AddUserPacket) {
             AddUserPacket aup = (AddUserPacket) data;
-            System.out.println("The user "+aup.getUsername()+" has joined the room");
-        }else if(data instanceof RemoveUserPacket){
+            System.out.println("The user " + aup.getUsername() + " has joined the room");
+        } else if (data instanceof RemoveUserPacket) {
             RemoveUserPacket rup = (RemoveUserPacket) data;
-            System.out.println("The user "+rup.getUsername()+" has left the room");
-        }else if(data instanceof ChatPacket){
+            System.out.println("The user " + rup.getUsername() + " has left the room");
+        } else if (data instanceof ChatPacket) {
             ChatPacket cp = (ChatPacket) data;
             Client.chatTArea.setText(Client.chatTArea.getText()
-                    + "\nfrom "+cp.getUsername()+":\n"
-                    +cp.getMessage());
-        }else if(data instanceof AudioPacket){
-            AudioPacket ap = (AudioPacket)data;
-            DataLine.Info info = new DataLine.Info(TargetDataLine.class, getAudioFormat());
-            try {
-                SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info);
-                line.write(ap.getBuf(), ap.getI(), ap.getBytesIn());
-            } catch (LineUnavailableException ex) {
-                Logger.getLogger(EventListener.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                    + "\nfrom " + cp.getUsername() + ":\n"
+                    + cp.getMessage());
+        } else if (data instanceof AudioPacket) {
+            AudioPacket ap = (AudioPacket) data;
+            
         }
     }
+
     public AudioFormat getAudioFormat() {
         float sampleRate = 16000;
         int sampleSizeInBits = 8;
@@ -57,5 +55,5 @@ public class EventListener {
                 channels, signed, bigEndian);
         return format;
     }
-    
+
 }
