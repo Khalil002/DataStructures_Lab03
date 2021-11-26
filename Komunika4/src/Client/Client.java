@@ -40,7 +40,6 @@ public class Client extends javax.swing.JFrame implements Runnable {
     private boolean running = false;
     private boolean audio = false;
     private boolean video = false;
-    private EventListener listener;
     CardLayout mainLayout, secondaryLayout;
     TargetDataLine line;
 
@@ -402,66 +401,12 @@ public class Client extends javax.swing.JFrame implements Runnable {
             out.flush();
             in = new ObjectInputStream(socket.getInputStream());
 
-            listener = new EventListener();
             running = true;
 
             new Thread(this).start();
             sendObject(new AddUserPacket(username));
 
-            Thread audioThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-                    AudioFormat format = getAudioFormat();
-                    DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
-
-                    // checks if system supports the data line
-                    if (!AudioSystem.isLineSupported(info)) {
-                        System.out.println("Line not supported");
-                        System.exit(0);
-                    }
-                    try {
-                        line = (TargetDataLine) AudioSystem.getLine(info);
-                        line.open(format);
-                        line.start();   // start capturing
-                    } catch (LineUnavailableException ex) {
-                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    System.out.println("Start capturing...");
-                    while (true) {
-                        System.out.println("");
-                        if (audio) {
-                            try {
-
-                                //AudioInputStream ais = new AudioInputStream(line);
-                                byte buf[] = new byte[8192];
-
-                                int bytesIn = line.read(buf, 0, 1024);
-
-                                AudioPacket ap = new AudioPacket(buf, 0, bytesIn);
-
-                                //AudioPacket ap = new AudioPacket(ais);
-                                out.writeObject(ap);
-
-                            } catch (IOException ex) {
-                                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-
-                    }
-                }
-            });
-            audioThread.start();
-            Thread videoThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (video) {
-
-                    }
-                }
-            });
-            videoThread.start();
+            
 
         } catch (IOException ex) {
             System.out.println("Unnable to connect to the server");
@@ -471,14 +416,16 @@ public class Client extends javax.swing.JFrame implements Runnable {
     public void close() {
 
         try {
+            RemoveUserPacket packet = new RemoveUserPacket(username);
+            sendObject(packet);
             running = false;
             audio = false;
             video = false;
-            RemoveUserPacket packet = new RemoveUserPacket(username);
-            sendObject(packet);
+            
             in.close();
             out.close();
             socket.close();
+            mainLayout.show(parent, "card2");
         } catch (IOException ex) {
             System.out.println("Error in closing the connection");
         }
@@ -488,18 +435,39 @@ public class Client extends javax.swing.JFrame implements Runnable {
     public void sendObject(Object packet) {
         try {
             out.writeObject(packet);
+            //out.flush();
         } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error while sending object "+ ex);
         }
 
     }
+    
+    void recieved(Object data) {
+        if (data instanceof AddUserPacket) {
+            AddUserPacket aup = (AddUserPacket) data;
+            System.out.println("The user " + aup.getUsername() + " has joined the room");
+        } else if (data instanceof RemoveUserPacket) {
+            RemoveUserPacket rup = (RemoveUserPacket) data;
+            System.out.println("The user " + rup.getUsername() + " has left the room");
+        } else if (data instanceof ChatPacket) {
+            ChatPacket cp = (ChatPacket) data;
+            Client.chatTArea.setText(Client.chatTArea.getText()
+                    + "\nfrom " + cp.getUsername() + ":\n"
+                    + cp.getMessage());
+        } else if (data instanceof AudioPacket) {
+            AudioPacket ap = (AudioPacket) data;
+            
+        }
+    }
+
+    
 
     @Override
     public void run() {
         while (running) {
             try {
                 Object data = in.readObject();
-                listener.recieved(data);
+                recieved(data);
             } catch (IOException ex) {
                 close();
             } catch (ClassNotFoundException ex) {
