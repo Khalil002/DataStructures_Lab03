@@ -87,8 +87,11 @@ public class Server {
                 AddUserPacket aup = (AddUserPacket) data;
                 names.add(aup.getUsername());
                 writers.add(out);
+                out.writeObject(new UserListPacket(names));
                 for (ObjectOutputStream writer : writers) {
-                    writer.writeObject(data);
+                    if(writer!=out){
+                        writer.writeObject(data);
+                    }
                 }
 
             } else if (data instanceof RemoveUserPacket) {
@@ -96,7 +99,9 @@ public class Server {
                 names.remove(rup.getUsername());
                 writers.remove(out);
                 for (ObjectOutputStream writer : writers) {
-                    writer.writeObject(data);
+                    if(writer!=out){
+                        writer.writeObject(data);
+                    }
                 }
             }else if(data instanceof ChatPacket){
                 for (ObjectOutputStream writer : writers) {

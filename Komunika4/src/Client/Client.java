@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioFormat;
@@ -42,7 +43,8 @@ public class Client extends javax.swing.JFrame implements Runnable {
     private boolean video = false;
     CardLayout mainLayout, secondaryLayout;
     TargetDataLine line;
-
+    ArrayList<String> users;
+    
     public Client() {
         initComponents();
         mainLayout = (CardLayout) parent.getLayout();
@@ -303,6 +305,7 @@ public class Client extends javax.swing.JFrame implements Runnable {
         } else {
             connect();
             mainLayout.show(parent, "card3");
+            usernameTField.setText("");
         }
     }//GEN-LAST:event_joinBtnActionPerformed
 
